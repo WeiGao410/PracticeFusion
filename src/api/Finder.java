@@ -19,7 +19,8 @@ public class Finder {
 	ArrayList<Doctor> doctorList;
 	// sort doctors by specialty, ordered by score
 	Map<String, PriorityQueue<Doctor>> map = new HashMap<String, PriorityQueue<Doctor>>();
-	for(Doctor doct:doctorList) {
+	
+	for(Doctor doct : doctorList) {
 		String speciality = doct.getDoctorSpecialty();
 		if (!map.containsKey(speciality)) {
 			PriorityQueue<Doctor> q = new PriorityQueue<Doctor>(11, new Comparator<Doctor>() {
@@ -41,13 +42,13 @@ public class Finder {
 	// default search return top 20 results.
 	public List<Doctor> findBySpeciality(Doctor doctor) {
 		findBySpeciality(doctor, 20);
-    }
+	}
 
 	// users can define how many resuts they want.
 	public List<Doctor> findBySpeciality(Doctor doctor, int num) {
 		List<Doctor> result = new ArrayList<Doctor>();
         if (doctor == null) {
-        return result;
+            return result;
         }
         String speciality = doctor.getDoctorSpecialty();
         int count = 0;
