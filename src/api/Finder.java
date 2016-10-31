@@ -15,32 +15,32 @@ import java.util.*;
 import model.Doctor;
 
 public class Finder {
-	// assume list of doctors in the memory
-	ArrayList<Doctor> doctorList;
-	// sort doctors by specialty, ordered by score
-	Map<String, PriorityQueue<Doctor>> map = new HashMap<String, PriorityQueue<Doctor>>();
-	public Finder() {
-	    for(Doctor doct : doctorList) {
-		    String speciality = doct.getDoctorSpecialty();
-		    if (!map.containsKey(speciality)) {
-		        PriorityQueue<Doctor> q = new PriorityQueue<Doctor>(11, new Comparator<Doctor>() {
-				@Override
-				public int compare(Doctor d1, Doctor d2) {
-					if (d1.getScore() == d2.getScore()) {
-						return 0;
-					}
-					return d1.getScore() > d2.getScore() ? -1 : 1;
-				}
-			    });
-			    q.add(doct);
-			    map.put(speciality, q);
-		    } else {
-			    map.get(speciality).add(doct);
-		    }
-	    }
-	}
+    // assume list of doctors in the memory
+    ArrayList<Doctor> doctorList;
+    // sort doctors by specialty, ordered by score
+    Map<String, PriorityQueue<Doctor>> map = new HashMap<String, PriorityQueue<Doctor>>();
+    public Finder() {
+        for(Doctor doct : doctorList) {
+            String speciality = doct.getDoctorSpecialty();
+            if (!map.containsKey(speciality)) {
+                PriorityQueue<Doctor> q = new PriorityQueue<Doctor>(11, new Comparator<Doctor>() {
+                @Override
+                public int compare(Doctor d1, Doctor d2) {
+                    if (d1.getScore() == d2.getScore()) {
+                        return 0;
+                    }
+                    return d1.getScore() > d2.getScore() ? -1 : 1;
+                }
+                });
+                q.add(doct);
+                map.put(speciality, q);
+            } else {
+                map.get(speciality).add(doct);
+            }
+        }
+    }
 
-	 // default search return top 20 results.
+    // default search return top 20 results.
     public List<Doctor> findBySpeciality(Doctor doctor) {
         return findBySpeciality(doctor, 20);
     }
@@ -61,6 +61,6 @@ public class Finder {
     }
 
 
-	public List<Doctor> findByNearby(Doctor doctor) {
-	}
+    public List<Doctor> findByNearby(Doctor doctor) {
+    }
 }
